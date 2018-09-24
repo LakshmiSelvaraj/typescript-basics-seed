@@ -54,3 +54,22 @@ const pizzaArrowFunctionEg = {
 pizza.getName();
 pizzaInTimeout.getName();
 console.log(pizzaArrowFunctionEg.getName());
+
+const sauces = ['tomato', 'peri-peri'];
+
+//Shorthand representation for creating an object
+const order = {
+    pizza, //instead of pizza:pizza 
+    sauces //instad of sauces:sauces
+};
+console.log("Sauces in order created via shorthand representation: " + order.sauces);
+
+const pizzaWithShorthandFunction = {
+    name: "Pepperoni",
+    sauces,
+    getName() {
+        return this.name;
+    } //Instead of getName: function() {} or getName: () => {}
+}
+
+console.log("Pizza created with shorthand function notation: " + pizzaWithShorthandFunction.getName());
