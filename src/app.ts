@@ -122,3 +122,17 @@ sumOrder = (x, y = 1) => x*y;
 
 console.log(`Price of one pizza: ${sumOrder(25)}`);
 console.log(`Price of two pizzas: ${sumOrder(25, 2)}`);
+
+//Tuple types - allow us to control how many elements in the array, the order of the elements and the datatype of the elements.
+let pizzaTuple: [string, number, boolean];
+pizzaTuple = ['Bacon', 1, true];
+
+//Type assertions with the as keyword.
+type Pizza = {
+    name: string, getName: () => string
+}
+const serializedPizza = JSON.stringify(pizza);
+function getPizzaNameFromSerializedPizza(obj: string): string {
+    return (JSON.parse(obj) as Pizza).name;
+}
+console.log(`Type assertions: ${getPizzaNameFromSerializedPizza(serializedPizza)}`);
