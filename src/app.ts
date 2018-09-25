@@ -84,3 +84,17 @@ var toppings = ['Pepperoni'];
 var newToppings = ['Pineapple'];
 var allToppings = [...toppings, ...newToppings];
 console.log("All toppings created via array spread operator: " + allToppings);
+
+//Object destructuring
+//When we use import { abc } from './var/etc'; We are picking certain properties from a module
+const demoDestructureFunction = function({name: pizzaName, getName} : any) {
+    return {pizzaName, getName};
+}
+
+const {pizzaName} = demoDestructureFunction(pizza);
+console.log("Pizza name via object destructure: " + pizzaName);
+
+//Array destructuring
+
+const [firstPizza] = pizzas;
+console.log("Pizza name via array destructure: " + firstPizza.name);
