@@ -95,6 +95,11 @@ const {pizzaName} = demoDestructureFunction(pizza);
 console.log("Pizza name via object destructure: " + pizzaName);
 
 //Array destructuring
-
 const [firstPizza] = pizzas;
 console.log("Pizza name via array destructure: " + firstPizza.name);
+
+//Backtick - ES6 feature for multiline strings and for calling the javascript world from within the string
+function normalizeCoupon(couponCode: string): string {
+    return couponCode.toUpperCase();
+}
+console.log(`Normalized coupon is ${normalizeCoupon('pizza25')}`);
