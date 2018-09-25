@@ -118,11 +118,7 @@ console.log(`Pizza size selected via union and literal type is: ${pizzaSize}`);
 //Declare function with quantity as an optional parameter
 let sumOrder: (price: number, quantity?: number) => number;
 //Define function
-sumOrder = (x, y) => {
-    if(y) {
-        return x * y;
-    }
-    return x;
-};
+sumOrder = (x, y = 1) => x*y;
+
 console.log(`Price of one pizza: ${sumOrder(25)}`);
 console.log(`Price of two pizzas: ${sumOrder(25, 2)}`);
