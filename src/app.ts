@@ -136,3 +136,35 @@ function getPizzaNameFromSerializedPizza(obj: string): string {
     return (JSON.parse(obj) as Pizza).name;
 }
 console.log(`Type assertions: ${getPizzaNameFromSerializedPizza(serializedPizza)}`);
+
+//Interfaces
+type pizzaSize = 'small' | 'medium' | 'large';
+interface Size {
+    size: pizzaSize
+}
+
+interface PizzaInterface extends Size {
+    name: string,
+    toppings?: number //optional interface parameter - allows objects to be created without this property
+    getName(): string,
+    [key: number]: PizzaInterface, //Index signatures - allows us to add dynamic properties and to treat the object as a dictionary,
+    [key: string]:any
+}
+
+function createPizza(name: string, size: pizzaSize) : PizzaInterface {
+    return {
+        name,
+        size,
+        getName() {
+            return this.name;
+        }
+    }
+}
+
+const createdPizza = createPizza('Blazing Inferno', 'small');
+createdPizza.toppings = 1;
+createdPizza[1] = createdPizza;
+createdPizza["xyz"] = "abc";
+console.log(`${createdPizza.name} of size ${createdPizza.size} created with interfaces`);
+console.log(`${createdPizza[1].name} of size ${createdPizza[1].size} created with interfaces`);
+console.log(`${createdPizza.name}'s index signature property : ${createdPizza.xyz}`)
