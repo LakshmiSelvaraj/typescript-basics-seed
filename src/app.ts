@@ -103,3 +103,26 @@ function normalizeCoupon(couponCode: string): string {
     return couponCode.toUpperCase();
 }
 console.log(`Normalized coupon is ${normalizeCoupon('pizza25')}`);
+
+//Literal types and unions
+let pizzaSize: string = 'small';
+function selectPizzaSize(size: 'small' | 'medium' | 'large'): void {
+    pizzaSize = size;
+    
+}
+selectPizzaSize('medium')
+console.log(`Pizza size selected via union and literal type is: ${pizzaSize}`);
+
+//Function types
+
+//Declare function with quantity as an optional parameter
+let sumOrder: (price: number, quantity?: number) => number;
+//Define function
+sumOrder = (x, y) => {
+    if(y) {
+        return x * y;
+    }
+    return x;
+};
+console.log(`Price of one pizza: ${sumOrder(25)}`);
+console.log(`Price of two pizzas: ${sumOrder(25, 2)}`);
