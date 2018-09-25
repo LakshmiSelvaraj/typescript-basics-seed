@@ -73,3 +73,14 @@ const pizzaWithShorthandFunction = {
 }
 
 console.log("Pizza created with shorthand function notation: " + pizzaWithShorthandFunction.getName());
+
+const sum = (...arr:any[]) => arr.reduce((previous, next) => previous + next);
+
+console.log("Sum using rest parameters: " + sum(1,2,3,4,5));
+
+//Array spread operator can be used for array concatentation
+
+var toppings = ['Pepperoni'];
+var newToppings = ['Pineapple'];
+var allToppings = [...toppings, ...newToppings];
+console.log("All toppings created via array spread operator: " + allToppings);
