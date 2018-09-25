@@ -138,9 +138,9 @@ function getPizzaNameFromSerializedPizza(obj: string): string {
 console.log(`Type assertions: ${getPizzaNameFromSerializedPizza(serializedPizza)}`);
 
 //Interfaces
-type pizzaSize = 'small' | 'medium' | 'large';
+type pizzaSizeType = 'small' | 'medium' | 'large';
 interface Size {
-    size: pizzaSize
+    size: pizzaSizeType
 }
 
 interface PizzaInterface extends Size {
@@ -151,7 +151,7 @@ interface PizzaInterface extends Size {
     [key: string]:any
 }
 
-function createPizza(name: string, size: pizzaSize) : PizzaInterface {
+function createPizza(name: string, size: pizzaSizeType) : PizzaInterface {
     return {
         name,
         size,
@@ -168,3 +168,36 @@ createdPizza["xyz"] = "abc";
 console.log(`${createdPizza.name} of size ${createdPizza.size} created with interfaces`);
 console.log(`${createdPizza[1].name} of size ${createdPizza[1].size} created with interfaces`);
 console.log(`${createdPizza.name}'s index signature property : ${createdPizza.xyz}`)
+
+//Create class
+interface SizesInterface {
+    availableSizes: pizzaSizeType[];
+}
+
+abstract class PizzaSize implements SizesInterface{
+    constructor(private sizes: pizzaSizeType[]) {}
+
+    get availableSizes() {
+        return this.sizes;
+    }
+
+    set availableSizes(sizes: pizzaSizeType[]) {
+        this.sizes = sizes;
+    }
+};
+
+class PizzaClass extends PizzaSize {
+    constructor(readonly name:string, sizes:pizzaSizeType[]) {
+        super(sizes);
+    }
+
+    static applyCoupon(percentage:number):string {
+        return `PIZZA_DISCOUNT_${percentage}`;
+    }
+}
+
+const pizzaSizeObj = new PizzaClass('Flaming Inferno', ['small', 'medium']);
+console.log(`Pizza sizes via getter: ${pizzaSizeObj.availableSizes}`);
+pizzaSizeObj.availableSizes = ['small', 'medium', 'large'];
+console.log(`Pizza sizes via getter after chaning values via setter: ${pizzaSizeObj.availableSizes}`);
+console.log(PizzaClass.applyCoupon(25));
