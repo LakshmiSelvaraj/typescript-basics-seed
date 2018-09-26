@@ -174,6 +174,7 @@ interface SizesInterface {
     availableSizes: pizzaSizeType[];
 }
 
+//Abstract class can still have methods, you just cannot create an instance of the abstract class
 abstract class PizzaSize implements SizesInterface{
     constructor(private sizes: pizzaSizeType[]) {}
 
